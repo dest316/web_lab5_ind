@@ -1,0 +1,23 @@
+form {
+    max-width: 600px;
+    margin: auto;
+}
+div {
+    margin: 10px
+}
+
+.matrix-input {
+    width: 40px
+}
+
+select {
+    width: 200px;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.button-group input {
+    margin-right: 10px;
+}

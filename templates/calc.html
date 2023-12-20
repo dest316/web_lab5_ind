@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Калькулятор</title>
+	<link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+	<form method="get">
+    <div>
+        <label for="sizeField">Размер матрицы:</label>
+        <input type="number" value={{size}} name="sizeField" id="sizeField">
+        <input type="submit" value="Показать" name="showButton">
+    </div>
+
+    <div class="matrix-inputs">
+        {% for i in range(size) %}
+            {% for j in range(size) %}
+                <input class="matrix-input" type="number" value={{matrix[i][j]}} name="field{{str(i) + '_' + str(j)}}">
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+
+    <div>
+        <label for="matrixOperation">Выберите операцию:</label>
+        <select id="matrixOperation" name="matrixOperation">
+            {% if selected == 0 %}
+            <option selected value="0">Квадрат матрицы</option>
+            {% else %}
+            <option value="0">Квадрат матрицы</option>
+            {% endif %}
+            {% if selected == 1 %}
+            <option selected value="1">Обратная матрица</option>
+            {% else %}
+            <option value="1">Обратная матрица</option>
+            {% endif %}
+            {% if selected == 2 %}
+            <option selected value="2">Ранг матрицы</option>
+            {% else %}
+            <option value="2">Ранг матрицы</option>
+            {% endif %}
+        </select>
+    </div>
+
+    <div class="button-group">
+        <input type="submit" value="Вычислить" name="calculateButton">
+        <input type="submit" value="Очистить" name="clearButton">
+    </div>
+</form>
+
+{% if is_shown %}
+<div>
+    {% if isinstance(result, str) %}
+    <p>{{result}}</p>
+    {% else %}
+    {% for i in range(result|length) %}
+    <p>
+        {% for j in range(result|length) %}
+        {{result[i][j]}}
+        {% endfor %}
+    </p>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endif %}
+</body>
+</html>
